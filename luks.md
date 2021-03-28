@@ -34,3 +34,34 @@
 ```
 # cryptsetup luksClose data
 ```
+
+## 8. Increase container file size
+```
+# dd if=/dev/zero of=/path/to/file bs=384M count=1 oflag=append conv=notrunc
+```
+
+## 9. Open LUKS device
+```
+# cryptsetup luksOpen /path/to/file data
+```
+
+## 10. Resize LUKS device
+```
+# cryptsetup resize data
+```
+
+## 11. Resize ext4 filesystem
+```
+# e2fsck -f /dev/mapper/data
+# resize2fs /dev/mapper/data
+```
+
+## 12. Mount device to /mnt
+```
+# mount /dev/mapper/data /mnt/
+```
+
+## 13. Check disk space usage
+```
+# df -h
+```
